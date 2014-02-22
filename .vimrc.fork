@@ -1,0 +1,88 @@
+" Environment
+    " Basics
+        if !WINDOWS()
+            set shell=/bin/bash
+        endif
+
+    " General
+        if has('win32') || has('win64')
+            if has("multi_byte")
+                set fileencodings=ucs-bom,utf-8,big5
+            endif
+        endif
+        set fileformats=unix,mac,dos
+        set viewoptions-=folds,options
+        set nospell
+        set noswapfile
+        set nomore
+        
+    " Vim UI
+        set nofoldenable                " Set to display all folds open
+
+    " Formatting
+        set wrap&
+        set pastetoggle=<Leader>p
+        set foldmethod=marker
+
+    " Plugins
+        " PIV
+            let g:DisableAutoPHPFolding = 1
+
+        " SnipMate
+            let g:snips_author = 'Far Tseng <farrrr@gmail.com>'
+
+        " YouCompleteMe
+            if count(g:spf13_bundle_groups, 'youcompleteme')
+
+                let g:ycm_always_populate_location_list = 1
+                let g:ycm_seed_identifiers_with_syntax = 0
+
+                " Enable omni completion
+                autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
+
+                set completeopt+=preview
+            endif
+
+        " vim-airline
+        let g:airline_enable_branch = 1
+        let g:airline_enable_syntastic = 1
+        let g:airline_enable_tagbar = 1
+        let g:airline_detect_modified = 1
+        let g:airline_detect_paste = 1
+        let g:airline_detect_whitespace = 2
+        let g:airline#extensions#tabline#enabled = 1
+        let g:airline#extensions#tabline#tab_nr_type = 1
+        let g:airline#extensions#bufferline#enabled = 0
+
+        " vim-autoclose
+        let g:autoclose_vim_commentmode = 1
+
+        " Undotree
+        let g:undotree_WindowLayout = 2
+
+        " Indent Line
+        let g:indentLine_color_term = 237
+        let g:indentLine_color_gui = '#A4E57E'
+        let g:indentLine_char = '┊'
+
+        " vim-json
+        let g:vim_json_syntax_conceal = 0
+        
+        " syntastic
+        let g:syntastic_check_on_open = 1
+        let g:syntastic_check_on_wq = 1
+        let g:syntastic_aggregate_errors = 1
+        let g:syntastic_auto_loc_list = 1
+        let g:syntastic_loc_list_height=5
+        let g:syntastic_error_symbol = '✗'
+        let g:syntastic_warning_symbol = '⚠'
+        let g:syntastic_javascript_checkers = ['jshint']
+        let g:syntastic_php_checkers = ['php']
+
+        " javascript-libraries-syntax
+        let g:used_javascript_libs = 'underscore,backbone,jquery,requirejs'
+
+        " vim-javascript-syntax
+        au FileType javascript call JavaScriptFold()
+
+" }
