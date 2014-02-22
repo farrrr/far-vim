@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 ############################  SETUP PARAMETERS
-app_name='spf13-vim'
-app_dir="$HOME/.spf13-vim-3"
-[ -z "$git_uri" ] && git_uri='https://github.com/spf13/spf13-vim.git'
+app_name='far-vim'
+app_dir="$HOME/.far-vim"
+[ -z "$git_uri" ] && git_uri='https://github.com/farrrr/far-vim.git'
 git_branch='3.0'
 debug_mode='0'
 fork_maintainer='0'
