@@ -44,6 +44,30 @@
         endif
     " }
 
+    " Setup NeoBundle Support {
+        " The next three lines ensure that the ~/.vim/bundle/ system works
+        filetype off
+        if has('vim_starting')
+            set rtp+=~/.vim/bundle/neobundle.vim/
+        endif
+
+        call neobundle#rc(expand('~/.vim/bundle/'))
+        
+        command! -nargs=? -bang -bar
+            \ -complete=customlist,neobundle#complete_bundles
+            \ BundleInstall
+            \ call neobundle#installer#install('!' == '<bang>', <q-args>)
+
+        command! -nargs=+ Bundle
+            \ call neobundle#parser#bundle(
+            \   substitute(<q-args>, '\s"[^"]\+$', '', ''))
+
+        command! -nargs=? -bang -bar
+            \ -complete=customlist,neobundle#complete_deleted_bundles
+            \ BundleClean
+            \ call neobundle#installer#clean('!' == '<bang>', <q-args>)
+    " }
+
 " }
 
 " Use before config if available {

@@ -55,8 +55,25 @@
     " Setup Bundle Support {
         " The next three lines ensure that the ~/.vim/bundle/ system works
         filetype off
-        set rtp+=~/.vim/bundle/vundle
-        call vundle#rc()
+        if has('vim_starting')
+            set runtimepath+=~/.vim/bundle/neobundle.vim/
+        endif
+
+        call neobundle#rc(expand('~/.vim/bundle/'))
+
+        command! -nargs=? -bang -bar
+              \ -complete=customlist,neobundle#complete_bundles
+              \ BundleInstall
+              \ call neobundle#installer#install('!' == '<bang>', <q-args>)
+
+        command! -nargs=+ Bundle
+              \ call neobundle#parser#bundle(
+              \   substitute(<q-args>, '\s"[^"]\+$', '', ''))
+
+        command! -nargs=? -bang -bar
+              \ -complete=customlist,neobundle#complete_deleted_bundles
+              \ BundleClean
+              \ call neobundle#installer#clean('!' == '<bang>', <q-args>)
     " }
 
     " Add an UnBundle command {
@@ -74,6 +91,7 @@
 " Bundles {
 
     " Deps {
+        NeoBundleFetch 'Shougo/neobundle.vim'
         Bundle 'gmarik/vundle'
         Bundle 'MarcWeber/vim-addon-mw-utils'
         Bundle 'tomtom/tlib_vim'
@@ -275,3 +293,5 @@
         source ~/.vimrc.bundles.local
     endif
 " }
+"
+filetype plugin indent on

@@ -83,6 +83,18 @@
         let g:used_javascript_libs = 'underscore,backbone,jquery,requirejs'
 
         " vim-javascript-syntax
-        au FileType javascript call JavaScriptFold()
+        " au FileType javascript call JavaScriptFold()
+
+        " vim-less
+        nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+
+        " vim-javascript
+        let javascript_enable_domhtmlcss = 1
+        let g:javascript_conceal = 0
+
+        " vim-autoformat
+        noremap <Leader>af :Autoformat<CR><CR>
+
+
 
 " }
