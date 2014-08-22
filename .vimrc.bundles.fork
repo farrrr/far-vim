@@ -6,8 +6,10 @@
             Bundle 'altercation/vim-colors-solarized'
             " Bundle 'spf13/vim-colors'
             Bundle 'tpope/vim-surround'
+            Bundle 'tpope/vim-repeat'
             Bundle 'spf13/vim-autoclose'
             Bundle 'kien/ctrlp.vim'
+            Bundle 'tacahiroy/ctrlp-funky'
             Bundle 'terryma/vim-multiple-cursors'
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
@@ -20,7 +22,6 @@
             endif
             " Bundle 'bling/vim-bufferline'
             Bundle 'Lokaltog/vim-easymotion'
-            Bundle 'godlygeek/csapprox'
             Bundle 'jistr/vim-nerdtree-tabs'
             Bundle 'flazz/vim-colorschemes'
             Bundle 'mbbill/undotree'
@@ -32,6 +33,18 @@
             Bundle 'mhinz/vim-signify'
             " Bundle 'tpope/vim-abolish.git'
             " Bundle 'osyo-manga/vim-over'
+            Bundle 'kana/vim-textobj-user'
+            Bundle 'kana/vim-textobj-indent'
+            Bundle 'gcmt/wildfire.vim'
+        endif
+    " }
+
+    " Writing {
+        if count(g:spf13_bundle_groups, 'writing')
+            Bundle 'reedes/vim-litecorrect'
+            Bundle 'reedes/vim-textobj-sentence'
+            Bundle 'reedes/vim-textobj-quote'
+            Bundle 'reedes/vim-wordy'
         endif
     " }
 
@@ -43,6 +56,7 @@
             " Bundle 'mattn/webapi-vim'
             " Bundle 'mattn/gist-vim'
             Bundle 'scrooloose/nerdcommenter'
+            Bundle 'tpope/vim-commentary'
             Bundle 'godlygeek/tabular'
             if executable('ctags')
                 Bundle 'majutsushi/tagbar'
@@ -61,6 +75,7 @@
         elseif count(g:spf13_bundle_groups, 'youcompleteme')
             Bundle 'Valloric/YouCompleteMe'
             Bundle 'SirVer/ultisnips'
+            Bundle 'honza/vim-snippets'
         elseif count(g:spf13_bundle_groups, 'neocomplcache')
             Bundle 'Shougo/neocomplcache'
             Bundle 'Shougo/neosnippet'
@@ -78,6 +93,7 @@
         if count(g:spf13_bundle_groups, 'php')
             Bundle 'spf13/PIV'
             " Bundle 'arnaud-lb/vim-php-namespace'
+            Bundle 'beyondwords/vim-twig'
             Bundle 'xsbeats/vim-blade'
             Bundle 'nono/vim-handlebars'
         endif
@@ -87,7 +103,7 @@
         if count(g:spf13_bundle_groups, 'python')
             " Pick either python-mode or pyflakes & pydoc
             Bundle 'klen/python-mode'
-            Bundle 'python.vim'
+            Bundle 'yssource/python.vim'
             Bundle 'python_match.vim'
             Bundle 'pythoncomplete'
         endif
@@ -105,10 +121,11 @@
         endif
     " }
 
-    " Java {
+    " Scala {
         if count(g:spf13_bundle_groups, 'scala')
             Bundle 'derekwyatt/vim-scala'
             Bundle 'derekwyatt/vim-sbt'
+            Bundle 'xptemplate'
         endif
     " }
 
@@ -117,6 +134,7 @@
             Bundle 'travitch/hasksyn'
             Bundle 'dag/vim2hs'
             Bundle 'Twinside/vim-haskellConceal'
+            Bundle 'Twinside/vim-haskellFold'
             Bundle 'lukerandall/haskellmode-vim'
             Bundle 'eagletmt/neco-ghc'
             Bundle 'eagletmt/ghcmod-vim'
@@ -149,15 +167,18 @@
 
     " Go Lang {
         if count(g:spf13_bundle_groups, 'go')
-            Bundle 'Blackrush/vim-gocode'
+            "Bundle 'Blackrush/vim-gocode'
+            Bundle 'fatih/vim-go'
         endif
     " }
 
     " Misc {
         if count(g:spf13_bundle_groups, 'misc')
+            Bundle 'wting/rust.vim'
             Bundle 'tpope/vim-markdown'
             " Bundle 'spf13/vim-preview'
             Bundle 'tpope/vim-cucumber'
+            Bundle 'cespare/vim-toml'
             Bundle 'quentindecock/vim-cucumber-align-pipes'
             Bundle 'Puppet-Syntax-Highlighting'
             Bundle 'tejr/vim-tmux'
