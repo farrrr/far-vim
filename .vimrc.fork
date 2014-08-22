@@ -25,11 +25,17 @@
         set foldmethod=marker
 
     " Plugins
-        " PIV
-            let g:DisableAutoPHPFolding = 1
+        " PIV {
+            if isdirectory(expand("~/.vim/bundle/PIV/"))
+                let g:DisableAutoPHPFolding = 1
+            endif
+        " }
 
-        " SnipMate
-            let g:snips_author = 'Far Tseng <farrrr@gmail.com>'
+        " SnipMate {
+            if isdirectory(expand("~/.vim/bundle/vim-snipmate/"))
+                let g:snips_author = 'Far Tseng <farrrr@gmail.com>'
+            endif
+        " }
 
         " YouCompleteMe
             if count(g:spf13_bundle_groups, 'youcompleteme')
@@ -43,57 +49,84 @@
                 set completeopt+=preview
             endif
 
-        " vim-airline
-        let g:airline_enable_branch = 1
-        let g:airline_enable_syntastic = 1
-        let g:airline_enable_tagbar = 1
-        let g:airline_detect_modified = 1
-        let g:airline_detect_paste = 1
-        let g:airline_detect_whitespace = 2
-        let g:airline#extensions#tabline#enabled = 1
-        let g:airline#extensions#tabline#tab_nr_type = 1
-        let g:airline#extensions#bufferline#enabled = 0
+        " vim-airline {
+            if isdirectory(expand("~/.vim/bundle/vim-airline/"))
+                let g:airline_enable_branch = 1
+                let g:airline_enable_syntastic = 1
+                let g:airline_enable_tagbar = 1
+                let g:airline_detect_modified = 1
+                let g:airline_detect_paste = 1
+                let g:airline_detect_whitespace = 2
+                let g:airline#extensions#tabline#enabled = 1
+                let g:airline#extensions#tabline#tab_nr_type = 1
+                let g:airline#extensions#bufferline#enabled = 0
+            endif
+        " }
 
-        " vim-autoclose
-        let g:autoclose_vim_commentmode = 1
+        " vim-autoclose {
+            if isdirectory(expand("~/.vim/bundle/vim-autoclse/"))
+                let g:autoclose_vim_commentmode = 1
+            endif
+        " }
 
-        " Undotree
-        let g:undotree_WindowLayout = 2
+        " Undotree {
+            if isdirectory(expand("~/.vim/bundle/undotree/"))
+                let g:undotree_WindowLayout = 2
+            endif
+        " }
 
-        " Indent Line
-        let g:indentLine_color_term = 237
-        let g:indentLine_color_gui = '#A4E57E'
-        let g:indentLine_char = '┊'
+        " Indent Line {
+            if isdirectory(expand("~/.vim/bundle/indentLine/"))
+                let g:indentLine_color_term = 237
+                let g:indentLine_color_gui = '#A4E57E'
+                let g:indentLine_char = '┊'
+            endif
+        " }
 
-        " vim-json
-        let g:vim_json_syntax_conceal = 0
-        
-        " syntastic
-        let g:syntastic_check_on_open = 1
-        let g:syntastic_check_on_wq = 1
-        let g:syntastic_aggregate_errors = 1
-        let g:syntastic_auto_loc_list = 1
-        let g:syntastic_loc_list_height=5
-        let g:syntastic_error_symbol = '✗'
-        let g:syntastic_warning_symbol = '⚠'
-        let g:syntastic_javascript_checkers = ['jshint']
-        let g:syntastic_php_checkers = ['php']
+        " syntastic {
+            if isdirectory(expand("~/.vim/bundle/syntastic/"))
+                let g:syntastic_check_on_open = 1
+                let g:syntastic_check_on_wq = 1
+                let g:syntastic_aggregate_errors = 1
+                let g:syntastic_auto_loc_list = 1
+                let g:syntastic_loc_list_height=5
+                let g:syntastic_error_symbol = '✗'
+                let g:syntastic_warning_symbol = '⚠'
+                let g:syntastic_javascript_checkers = ['jshint']
+                let g:syntastic_php_checkers = ['php']
+            endif
+        " }
 
-        " javascript-libraries-syntax
-        let g:used_javascript_libs = 'underscore,backbone,jquery,requirejs'
+        " javascript-libraries-syntax {
+            if isdirectory(expand("~/.vim/bundle/javascript-libraries-syntax.vim/"))
+                let g:used_javascript_libs = 'underscore,backbone,jquery,requirejs'
+            endif
+        " }
 
-        " vim-javascript-syntax
-        " au FileType javascript call JavaScriptFold()
+        " vim-javascript-syntax {
+            if isdirectory(expand("~/.vim/bundle/vim-javascript-syntax/"))
+            "    au FileType javascript call JavaScriptFold()
+            endif
+        " }
 
-        " vim-less
-        nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+        " vim-less {
+            if isdirectory(expand("~/.vim/bundle/vim-less/"))
+                nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+            endif
+        " }
 
-        " vim-javascript
-        let javascript_enable_domhtmlcss = 1
-        let g:javascript_conceal = 0
+        " vim-javascript {
+            if isdirectory(expand("~/.vim/bundle/vim-javascript/"))
+                let javascript_enable_domhtmlcss = 1
+                let g:javascript_conceal = 0
+            endif
+        " }
 
-        " vim-autoformat
-        noremap <Leader>af :Autoformat<CR><CR>
+        " vim-autoformat {
+            if isdirectory(expand("~/.vim/bundle/vim-autoformat/"))
+                noremap <Leader>af :Autoformat<CR><CR>
+            endif
+        " }
 
 
 

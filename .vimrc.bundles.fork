@@ -167,10 +167,4 @@
         endif
     " }
 
-    " Twig {
-        if count(g:spf13_bundle_groups, 'twig')
-            Bundle 'beyondwords/vim-twig'
-        endif
-    " }
-
 " }
