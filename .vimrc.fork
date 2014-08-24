@@ -13,7 +13,7 @@
         if has('gui_running')
             if !exists("g:spf13_no_big_font")
                 if OSX() && has("gui_running")
-                    set guifont=Meslo\ LG\ M\ DZ \Regular\ for\ Powerline\ 14
+                    set guifont=Meslo\ LG\ M\ DZ\ Regular\ for\ Powerline:h14
                 endif
             endif
         endif
