@@ -10,6 +10,13 @@
                 set fileencodings=ucs-bom,utf-8,big5
             endif
         endif
+        if has('gui_running')
+            if !exists("g:spf13_no_big_font")
+                if OSX() && has("gui_running")
+                    set guifont=Meslo\ LG\ M\ DZ \Regular\ for\ Powerline\ 14
+                endif
+            endif
+        endif
         set fileformats=unix,mac,dos
         set viewoptions-=folds,options
         set nospell
