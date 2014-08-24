@@ -6,7 +6,7 @@ app_dir="$HOME/.far-vim"
 git_branch='3.0'
 debug_mode='0'
 fork_maintainer='0'
-[ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/vundle.git"
+[ -z "$NEOBUNDLE_URI" ] && NEOBUNDLE_URI="https://github.com/Shougo/neobundle.vim.git"
 
 ############################  BASIC SETUP TOOLS
 msg() {
@@ -103,6 +103,17 @@ clone_vundle() {
     debug
 }
 
+clone_neobundle() {
+    if [ ! -e "$HOME/.vim/bundle/neobundle.vim" ]; then
+	git clone $NEOBUNDLE_URI "$HOME/.vim/bundle/neobundle.vim"
+    else
+	upgrade_repo "neobundle"    "Successfully update neobundle"
+    fi
+    ret="$?"
+    success "$1"
+    debug
+}
+
 create_symlinks() {
     endpath="$app_dir"
 
@@ -139,15 +150,15 @@ create_symlinks() {
     debug
 }
 
-setup_vundle() {
+setup_neobundle() {
     system_shell="$SHELL"
     export SHELL='/bin/sh'
     
     vim \
         -u "$app_dir/.vimrc.bundles.default" \
         "+set nomore" \
-        "+BundleInstall!" \
-        "+BundleClean" \
+        "+NeoBundleInstall!" \
+        "+NeoBundleClean" \
         "+qall"
     
     export SHELL="$system_shell"
@@ -168,9 +179,9 @@ clone_repo      "Successfully cloned $app_name"
 
 create_symlinks "Setting up vim symlinks"
 
-clone_vundle    "Successfully cloned vundle"
+clone_neobundle    "Successfully cloned NeoBundle"
 
-setup_vundle    "Now updating/installing plugins using Vundle"
+setup_neobundle    "Now updating/installing plugins using NeoBundle"
 
 msg             "\nThanks for installing $app_name."
-msg             "© `date +%Y` http://vim.spf13.com/"
+msg             "© `date +%Y` https://github.com/farrrr/far-vim/"
