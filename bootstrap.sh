@@ -2,7 +2,7 @@
 ############################  SETUP PARAMETERS
 app_name='far-vim'
 app_dir="$HOME/.far-vim"
-[ -z "$git_uri" ] && git_uri='https://github.com/farrrr/far-vim.git'
+[ -z "$git_repo" ] && git_repo='farrrr/far-vim.git'
 git_branch='3.0'
 debug_mode='0'
 fork_maintainer='0'
@@ -174,6 +174,25 @@ do_backup   "Your old vim stuff has a suffix now and looks like .vim.`date +%Y%m
         "$HOME/.vim" \
         "$HOME/.vimrc" \
         "$HOME/.gvimrc"
+
+while true
+do
+    read -p "Do you wanna clone Repo over SSH? [Y/N]" RESP
+    case $RESP
+        in
+        [yY])
+            git_uri="git@github.com:$git_repo"
+            break
+            ;;
+        [nN])
+            git_uri="https://github.com/$git_repo"
+            break
+            ;;
+        *)
+            msg "Please enter Y or N"
+            ;;
+    esac
+done
 
 clone_repo      "Successfully cloned $app_name"
 
