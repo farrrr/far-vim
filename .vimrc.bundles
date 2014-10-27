@@ -59,7 +59,7 @@
             set runtimepath+=~/.vim/bundle/neobundle.vim/
         endif
 
-        call neobundle#rc(expand('~/.vim/bundle/'))
+        call neobundle#begin(expand('~/.vim/bundle/'))
 
         command! -nargs=? -bang -bar
               \ -complete=customlist,neobundle#complete_bundles
@@ -74,6 +74,8 @@
               \ -complete=customlist,neobundle#complete_deleted_bundles
               \ BundleClean
               \ call neobundle#installer#clean('!' == '<bang>', <q-args>)
+
+        call neobundle#end()
     " }
 
     " Add an UnBundle command {
@@ -316,3 +318,7 @@
 " }
 "
 filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
