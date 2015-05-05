@@ -17,11 +17,11 @@
 ############################  SETUP PARAMETERS
 app_name='far-vim'
 [ -z "$APP_PATH" ] && APP_PATH="$HOME/.far-vim"
-[ -z "$REPO_URI" ] && REPO_URI='https://github.com/farrrr/far-vim.git'
+[ -z "$REPO_URI" ] && REPO_URI='https://github.com/farrrr/farrrr-vim.git'
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='3.0'
 debug_mode='0'
 fork_maintainer='0'
-[ -z "$NEOBUNDLE_URI" ] && NEOBUNDLE_URI="https://github.com/Shougo/neobundle.vim.git"
+[ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/vundle.git"
 
 ############################  BASIC SETUP TOOLS
 msg() {
@@ -41,7 +41,7 @@ error() {
 
 debug() {
     if [ "$debug_mode" -eq '1' ] && [ "$ret" -gt '1' ]; then
-      msg "An error occurred in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
+        msg "An error occurred in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
     fi
 }
 
@@ -101,34 +101,24 @@ sync_repo() {
         cd "$repo_path" && git pull origin "$repo_branch"
         ret="$?"
         success "Successfully updated $repo_name"
-      fi
+    fi
 
-      debug
+    debug
 }
 
 create_symlinks() {
     local source_path="$1"
     local target_path="$2"
 
-    if [ ! -e "$app_dir" ]; then
     lnif "$source_path/.vimrc"         "$target_path/.vimrc"
     lnif "$source_path/.vimrc.bundles" "$target_path/.vimrc.bundles"
     lnif "$source_path/.vimrc.before"  "$target_path/.vimrc.before"
-        success "$1"
-        debug
-    else
     lnif "$source_path/.vim"           "$target_path/.vim"
 
     touch  "$target_path/.vimrc.local"
 
-clone_neobundle() {
-    if [ ! -e "$HOME/.vim/bundle/neobundle.vim" ]; then
-	git clone $NEOBUNDLE_URI "$HOME/.vim/bundle/neobundle.vim"
-    else
-	upgrade_repo "neobundle"    "Successfully update neobundle"
-    fi
     ret="$?"
-    success "$1"
+    success "Setting up vim symlinks."
     debug
 }
 
@@ -142,46 +132,26 @@ setup_fork_mode() {
         touch "$target_path/.vimrc.before.fork"
 
         lnif "$source_path/.vimrc.fork"         "$target_path/.vimrc.fork"
-    lnif "$endpath/.vimrc.bundles"      "$HOME/.vimrc.bundles"
         lnif "$source_path/.vimrc.bundles.fork" "$target_path/.vimrc.bundles.fork"
         lnif "$source_path/.vimrc.before.fork"  "$target_path/.vimrc.before.fork"
 
-    # Useful for fork maintainers
-    touch  "$HOME/.vimrc.local"
-
-    if [ -e "$endpath/.vimrc.fork" ]; then
-        ln -sf "$endpath/.vimrc.fork" "$HOME/.vimrc.fork"
-    elif [ "$fork_maintainer" -eq '1' ]; then
-        touch "$HOME/.vimrc.fork"
-        touch "$HOME/.vimrc.bundles.fork"
-        touch "$HOME/.vimrc.before.fork"
-    fi
-
-    if [ -e "$endpath/.vimrc.bundles.fork" ]; then
-        ln -sf "$endpath/.vimrc.bundles.fork" "$HOME/.vimrc.bundles.fork"
-    fi
-
-    if [ -e "$endpath/.vimrc.before.fork" ]; then
-        ln -sf "$endpath/.vimrc.before.fork" "$HOME/.vimrc.before.fork"
-    fi
-
-    ret="$?"
+        ret="$?"
         success "Created fork maintainer files."
-    debug
+        debug
     fi
 }
 
-setup_neobundle() {
-    system_shell="$SHELL"
+setup_vundle() {
+    local system_shell="$SHELL"
     export SHELL='/bin/sh'
-    
+
     vim \
         -u "$1" \
         "+set nomore" \
-        "+NeoBundleInstall!" \
-        "+NeoBundleClean" \
+        "+BundleInstall!" \
+        "+BundleClean" \
         "+qall"
-    
+
     export SHELL="$system_shell"
 
     success "Now updating/installing plugins using Vundle"
@@ -194,27 +164,13 @@ program_exists  "vim"
 program_exists  "git"
 
 do_backup       "$HOME/.vim" \
-        "$HOME/.vimrc" \
-        "$HOME/.gvimrc"
+                "$HOME/.vimrc" \
+                "$HOME/.gvimrc"
 
-while true
-do
-    read -p "Do you wanna clone Repo over SSH? [Y/N]" RESP
-    case $RESP
-        in
-        [yY])
-            git_uri="git@github.com:$git_repo"
-            break
-            ;;
-        [nN])
-            git_uri="https://github.com/$git_repo"
-            break
-            ;;
-        *)
-            msg "Please enter Y or N"
-            ;;
-    esac
-done
+sync_repo       "$APP_PATH" \
+                "$REPO_URI" \
+                "$REPO_BRANCH" \
+                "$app_name"
 
 create_symlinks "$APP_PATH" \
                 "$HOME"
@@ -225,10 +181,10 @@ setup_fork_mode "$fork_maintainer" \
 
 sync_repo       "$HOME/.vim/bundle/vundle" \
                 "$VUNDLE_URI" \
-clone_neobundle    "Successfully cloned NeoBundle"
+                "master" \
                 "vundle"
 
-setup_neobundle    "Now updating/installing plugins using NeoBundle"
+setup_vundle    "$APP_PATH/.vimrc.bundles.default"
 
 msg             "\nThanks for installing $app_name."
-msg             "© `date +%Y` https://github.com/farrrr/far-vim/"
+msg             "© `date +%Y` http://vim.spf13.com/"
