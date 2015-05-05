@@ -183,7 +183,7 @@
 
 " Vim UI {
 
-    if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
+    if !exists('g:override_spf13_bundles') && filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
         let g:solarized_termcolors=256
         let g:solarized_termtrans=1
         let g:solarized_contrast="normal"
@@ -213,7 +213,9 @@
         " Broken down into easily includeable segments
         set statusline=%<%f\                     " Filename
         set statusline+=%w%h%m%r                 " Options
-        set statusline+=%{fugitive#statusline()} " Git Hotness
+        if !exists('g:override_spf13_bundles')
+            set statusline+=%{fugitive#statusline()} " Git Hotness
+        endif
         set statusline+=\ [%{&ff}/%Y]            " Filetype
         set statusline+=\ [%{getcwd()}]          " Current dir
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
@@ -221,7 +223,7 @@
 
     set backspace=indent,eol,start  " Backspace for dummies
     set linespace=0                 " No extra spaces between rows
-    set nu                          " Line numbers on
+    set number                      " Line numbers on
     set showmatch                   " Show matching brackets/parenthesis
     set incsearch                   " Find as you type search
     set hlsearch                    " Highlight search terms
@@ -257,7 +259,7 @@
     " To disable the stripping of whitespace, add the following to your
     " .vimrc.before.local file:
     "   let g:spf13_keep_trailing_whitespace = 1
-    autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
+    autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
     "autocmd FileType go autocmd BufWritePre <buffer> Fmt
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
     autocmd FileType haskell,puppet,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
@@ -386,6 +388,20 @@
     nmap <leader>f8 :set foldlevel=8<CR>
     nmap <leader>f9 :set foldlevel=9<CR>
 
+    "UPPERCASE and lowsercase conversion
+    nnoremap g^ gUiW
+    nnoremap gv guiW
+
+    "go to first and last char of line
+    nnoremap H ^
+    nnoremap L g_
+    vnoremap H ^
+    vnoremap L g_
+
+    "use ; to go to command line
+    nnoremap ; :
+    vnoremap ; :
+
     " Most prefer to toggle search highlighting rather than clear the current
     " search results. To clear search highlighting rather than toggle it on
     " and off, add the following to your .vimrc.before.local file:
@@ -418,7 +434,7 @@
 
     " Some helpers to edit mode
     " http://vimcasts.org/e/14
-    cnoremap %% <C-R>=expand('%:h').'/'<cr>
+    cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
     map <leader>ew :e %%
     map <leader>es :sp %%
     map <leader>ev :vsp %%
@@ -558,8 +574,8 @@
         if isdirectory(expand("~/.vim/bundle/tabular"))
             nmap <Leader>a& :Tabularize /&<CR>
             vmap <Leader>a& :Tabularize /&<CR>
-            nmap <Leader>a= :Tabularize /=<CR>
-            vmap <Leader>a= :Tabularize /=<CR>
+            nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+            vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
             nmap <Leader>a=> :Tabularize /=><CR>
             vmap <Leader>a=> :Tabularize /=><CR>
             nmap <Leader>a: :Tabularize /:<CR>
@@ -624,6 +640,9 @@
             else
                 let s:ctrlp_fallback = 'find %s -type f'
             endif
+            if exists("g:ctrlp_user_command")
+                unlet g:ctrlp_user_command
+            endif
             let g:ctrlp_user_command = {
                 \ 'types': {
                     \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
@@ -645,21 +664,6 @@
     " TagBar {
         if isdirectory(expand("~/.vim/bundle/tagbar/"))
             nnoremap <silent> <leader>tt :TagbarToggle<CR>
-
-            " If using go please install the gotags program using the following
-            " go install github.com/jstemmer/gotags
-            " And make sure gotags is in your path
-            let g:tagbar_type_go = {
-                \ 'ctagstype' : 'go',
-                \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
-                    \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
-                    \ 'r:constructor', 'f:functions' ],
-                \ 'sro' : '.',
-                \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
-                \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
-                \ 'ctagsbin'  : 'gotags',
-                \ 'ctagsargs' : '-sort -silent'
-                \ }
         endif
     "}
 
@@ -778,7 +782,7 @@
 
                     " <CR>: close popup
                     " <s-CR>: close popup and save indent.
-                    inoremap <expr><s-CR> pumvisible() ? neocomplete#smart_close_popup()"\<CR>" : "\<CR>"
+                    inoremap <expr><s-CR> pumvisible() ? neocomplete#smart_close_popup()."\<CR>" : "\<CR>"
 
                     function! CleverCr()
                         if pumvisible()
@@ -793,8 +797,8 @@
                         endif
                     endfunction
 
-                    " <CR> close popup and save indent or expand snippet 
-                    imap <expr> <CR> CleverCr() 
+                    " <CR> close popup and save indent or expand snippet
+                    imap <expr> <CR> CleverCr()
                     " <C-h>, <BS>: close popup and delete backword char.
                     inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
                     inoremap <expr><C-y> neocomplete#smart_close_popup()
@@ -900,12 +904,12 @@
                         endif
                     endfunction
 
-                    " <CR> close popup and save indent or expand snippet 
+                    " <CR> close popup and save indent or expand snippet
                     imap <expr> <CR> CleverCr()
 
                     " <CR>: close popup
                     " <s-CR>: close popup and save indent.
-                    inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
+                    inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()."\<CR>" : "\<CR>"
                     "inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 
                     " <C-h>, <BS>: close popup and delete backword char.

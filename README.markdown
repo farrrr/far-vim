@@ -42,15 +42,12 @@ If you have a bash-compatible shell you can run the script directly:
 
 ## Installing on Windows
 
-On Windows and \*nix [Git] and [Curl] are required. Also, if you haven't already, you'll need to install [Vim].  
-The quickest option to install all three dependencies ([Git], [Curl], [Vim] and [spf13-vim]) via [Chocolatey] NuGet and the [spf13.vim package]. After running the [Chocolatey] install, execute the following commands on the _command prompt_:
+On Windows and \*nix [Git] and [Curl] are required. Also, if you haven't done so already, you'll need to install [Vim].  
+The quickest option to install all three dependencies ([Git], [Curl], [Vim] and [spf13-vim]) is via [Chocolatey] NuGet. After installing [Chocolatey], execute the following commands on the _command prompt_:
 
-    cinst git
-    cinst curl
-    cinst ctags
-    cinst spf13.vim
+    C:\> choco install spf13-vim
 
-_Note: The spf13.vim package will install Vim also! _
+_Note: The [spf13-vim package] will install Vim also!_
 
 If you want to install [msysgit], [Curl] and [spf13-vim] individually, follow the directions below.
 
@@ -234,8 +231,8 @@ Add the UnBundle command to this line. It takes the same input as the Bundle lin
 For example, disabling the 'AutoClose' and 'scrooloose/syntastic' plugins
 
 ```bash
-    echo UnBundle \'AutoClose\' >> ~/.vimrc.local
-    echo UnBundle \'scrooloose/syntastic\' >> ~/.vimrc.local
+    echo UnBundle \'AutoClose\' >> ~/.vimrc.bundles.local
+    echo UnBundle \'scrooloose/syntastic\' >> ~/.vimrc.bundles.local
 ```
 
 **Remember to run ':BundleClean!' after this to remove the existing directories**
@@ -303,9 +300,9 @@ filetype. View `help :NERDCommenter` or checkout my post on [NERDCommenter](http
 
 **QuickStart** Toggle comments using `<Leader>c<space>` in Visual or Normal mode.
 
-## [neocomplcache]
+## [neocomplete]
 
-NeoComplCache is an amazing autocomplete plugin with additional support for snippets. It can complete simulatiously from the dictionary, buffer, omnicomplete and snippets. This is the one true plugin that brings Vim autocomplete on par with the best editors.
+Neocomplete is an amazing autocomplete plugin with additional support for snippets. It can complete simulatiously from the dictionary, buffer, omnicomplete and snippets. This is the one true plugin that brings Vim autocomplete on par with the best editors.
 
 **QuickStart** Just start typing, it will autocomplete where possible
 
@@ -313,9 +310,9 @@ NeoComplCache is an amazing autocomplete plugin with additional support for snip
 
  * Automatically present the autocomplete menu
  * Support tab and enter for autocomplete
- * `<C-k>` for completing snippets.
+ * `<C-k>` for completing snippets using [Neosnippet](https://github.com/Shougo/neosnippet.vim).
 
-![neocomplcache image][autocomplete-img]
+![neocomplete image][autocomplete-img]
 
 ## [YouCompleteMe]
 
@@ -478,7 +475,7 @@ Terminal emulator colorschemes:
 
 ## Snippets
 
-It also contains a very complete set of [snippets](https://github.com/spf13/snipmate-snippets) for use with snipmate or [NeoComplCache].
+It also contains a very complete set of [snippets](https://github.com/spf13/snipmate-snippets) for use with snipmate or [neocomplete].
 
 
 # Intro to VIM
@@ -516,7 +513,7 @@ Here's some tips if you've never used VIM before:
 [Vim]:http://www.vim.org/download.php#pc
 [msysgit]:http://code.google.com/p/msysgit
 [Chocolatey]: http://chocolatey.org/
-[spf13.vim package]: http://chocolatey.org/packages/spf13.vim
+[spf13-vim package]: https://chocolatey.org/packages/spf13-vim
 [MacVim]:http://code.google.com/p/macvim/
 [spf13-vim]:https://github.com/spf13/spf13-vim
 [contributors]:https://github.com/spf13/spf13-vim/contributors
@@ -528,7 +525,7 @@ Here's some tips if you've never used VIM before:
 [NERDTree]:https://github.com/scrooloose/nerdtree
 [ctrlp]:https://github.com/kien/ctrlp.vim
 [solarized]:https://github.com/altercation/vim-colors-solarized
-[neocomplcache]:https://github.com/shougo/neocomplcache
+[neocomplete]:https://github.com/shougo/neocomplete
 [Fugitive]:https://github.com/tpope/vim-fugitive
 [Surround]:https://github.com/tpope/vim-surround
 [Tagbar]:https://github.com/majutsushi/tagbar
