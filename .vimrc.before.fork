@@ -1,24 +1,46 @@
 " spf13 options {
 
+    " Prevent automatically changing to open file directory
+    let g:spf13_no_autochdir = 1
+
     " Disable easier moving in tabs and windows
     let g:spf13_no_easyWindows = 1
 
     " Disable wrap relative motion for start/end line motions
-    let g:spf13_wrapRelMotion = 0
+    let g:spf13_wrapRelMotion = 1
+
+    " Disable fast tab navigation
+    let g:spf13_no_fastTabs = 1
+
+    " Disable views
+    let g:spf13_no_views = 1
 
     " Clear search highlighting
     let g:spf13_clear_search_highlight = 1
 
+    " Disable neosnippet expansion
+    " This maps over <C-k> and does some Supertab
+    " emulation with snippets
+    let g:spf13_no_neosnippet_expand = 1
+
+    " Disable whitespace stripping
+    let g:spf13_keep_trailing_whitespace = 0
+
     " Enable powerline symbols
     let g:airline_powerline_fonts = 1
 
-    " To override all the included bundles, add the following to your
-    " .vimrc.bundles.local file:
-    "   let g:override_spf13_bundles = 1
+    " Don't turn conceallevel or concealcursor
+    let g:spf13_no_conceal = 1
+
+    " Disable  omni complete
+    " let g:spf13_no_omni_complete = 1
+    
     let g:override_spf13_bundles = 1
 
+    " To specify a different directory in which to place the vimbackup,
+    " vimviews, vimundo, and vimswap files/directories
+    let g:spf13_consolidated_directory = $HOME . '/.vim/'
+
     " list only the plugin groups you will use
-    let g:spf13_bundle_groups = ['general', 'neocomplcache', 'programming', 'php', 'ruby', 'javascript', 'html', 'misc']
-
-
+    let g:spf13_bundle_groups=['general', 'programming', 'php', 'ruby', 'python', 'javascript', 'html', 'misc', 'youcompleteme']
 " }

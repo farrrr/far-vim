@@ -1,5 +1,3 @@
-" Bundles {
-
     " General {
         if count(g:spf13_bundle_groups, 'general')
             Bundle 'scrooloose/nerdtree'
@@ -7,10 +5,10 @@
             " Bundle 'spf13/vim-colors'
             Bundle 'tpope/vim-surround'
             Bundle 'tpope/vim-repeat'
-            Bundle 'spf13/vim-autoclose'
-            Bundle 'kien/ctrlp.vim'
-            Bundle 'tacahiroy/ctrlp-funky'
-            Bundle 'terryma/vim-multiple-cursors'
+            Bundle 'jiangmiao/auto-pairs'
+            " Bundle 'ctrlpvim/ctrlp.vim'
+            " Bundle 'tacahiroy/ctrlp-funky'
+            " Bundle 'kristijanhusak/vim-multiple-cursors'
             Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
             if (has("python") || has("python3")) && exists('g:spf13_use_powerline') && !exists('g:spf13_use_old_powerline')
@@ -20,7 +18,7 @@
             else
                 Bundle 'bling/vim-airline'
             endif
-            " Bundle 'bling/vim-bufferline'
+            Bundle 'bling/vim-bufferline'
             Bundle 'Lokaltog/vim-easymotion'
             Bundle 'jistr/vim-nerdtree-tabs'
             Bundle 'flazz/vim-colorschemes'
@@ -31,30 +29,21 @@
                 Bundle 'vim-scripts/restore_view.vim'
             endif
             Bundle 'mhinz/vim-signify'
-            " Bundle 'tpope/vim-abolish.git'
-            " Bundle 'osyo-manga/vim-over'
-            Bundle 'kana/vim-textobj-user'
-            Bundle 'kana/vim-textobj-indent'
+            Bundle 'tpope/vim-abolish.git'
+            Bundle 'osyo-manga/vim-over'
+            " Bundle 'kana/vim-textobj-user'
+            " Bundle 'kana/vim-textobj-indent'
             Bundle 'gcmt/wildfire.vim'
         endif
     " }
-
-    " Writing {
-        if count(g:spf13_bundle_groups, 'writing')
-            Bundle 'reedes/vim-litecorrect'
-            Bundle 'reedes/vim-textobj-sentence'
-            Bundle 'reedes/vim-textobj-quote'
-            Bundle 'reedes/vim-wordy'
-        endif
-    " }
-
+    
     " General Programming {
         if count(g:spf13_bundle_groups, 'programming')
             " Pick one of the checksyntax, jslint, or syntastic
             Bundle 'scrooloose/syntastic'
             Bundle 'tpope/vim-fugitive'
-            " Bundle 'mattn/webapi-vim'
-            " Bundle 'mattn/gist-vim'
+            Bundle 'mattn/webapi-vim'
+            Bundle 'mattn/gist-vim'
             Bundle 'scrooloose/nerdcommenter'
             Bundle 'tpope/vim-commentary'
             Bundle 'godlygeek/tabular'
@@ -92,8 +81,8 @@
     " PHP {
         if count(g:spf13_bundle_groups, 'php')
             Bundle 'spf13/PIV'
-            " Bundle 'arnaud-lb/vim-php-namespace'
-            Bundle 'beyondwords/vim-twig'
+            Bundle 'arnaud-lb/vim-php-namespace'
+            " Bundle 'beyondwords/vim-twig'
             Bundle 'xsbeats/vim-blade'
             Bundle 'nono/vim-handlebars'
         endif
@@ -114,7 +103,7 @@
             Bundle 'elzr/vim-json'
             Bundle 'groenewege/vim-less'
             Bundle 'pangloss/vim-javascript'
-            " Bundle 'briancollins/vim-jst'
+            Bundle 'briancollins/vim-jst'
             Bundle 'kchmck/vim-coffee-script'
             Bundle 'othree/javascript-libraries-syntax.vim'
             Bundle 'othree/vim-javascript-syntax'
@@ -165,6 +154,12 @@
         endif
     " }
 
+    " Puppet {
+        if count(g:spf13_bundle_groups, 'puppet')
+            Bundle 'rodjek/vim-puppet'
+        endif
+    " }
+
     " Go Lang {
         if count(g:spf13_bundle_groups, 'go')
             "Bundle 'Blackrush/vim-gocode'
@@ -172,15 +167,23 @@
         endif
     " }
 
+    " Elixir {
+        if count(g:spf13_bundle_groups, 'elixir')
+            Bundle 'elixir-lang/vim-elixir'
+            Bundle 'carlosgaldino/elixir-snippets'
+            Bundle 'mattreduce/vim-mix'
+        endif
+    " }
+
     " Misc {
         if count(g:spf13_bundle_groups, 'misc')
-            Bundle 'wting/rust.vim'
+            Bundle 'rust-lang/rust.vim'
             Bundle 'tpope/vim-markdown'
-            " Bundle 'spf13/vim-preview'
+            Bundle 'spf13/vim-preview'
             Bundle 'tpope/vim-cucumber'
             Bundle 'cespare/vim-toml'
             Bundle 'quentindecock/vim-cucumber-align-pipes'
-            Bundle 'Puppet-Syntax-Highlighting'
+            Bundle 'saltstack/salt-vim'
             Bundle 'tejr/vim-tmux'
             Bundle 'othree/vim-syntax-enhanced'
             Bundle 'MarcWeber/vim-addon-local-vimrc'

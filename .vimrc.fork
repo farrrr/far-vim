@@ -19,7 +19,6 @@
         endif
         set fileformats=unix,mac,dos
         set viewoptions-=folds,options
-        set nospell
         set noswapfile
         set nomore
         
@@ -33,46 +32,42 @@
 
     " Plugins
         " PIV {
-            if isdirectory(expand("~/.vim/bundle/PIV/"))
+            if isdirectory(expand("~/.vim/bundle/PIV"))
                 let g:DisableAutoPHPFolding = 1
             endif
         " }
 
         " SnipMate {
-            if isdirectory(expand("~/.vim/bundle/vim-snipmate/"))
-                let g:snips_author = 'Far Tseng <farrrr@gmail.com>'
-            endif
+            let g:snips_author = 'Far Tseng <farrrr@gmail.com>'
         " }
 
         " YouCompleteMe
             if count(g:spf13_bundle_groups, 'youcompleteme')
 
-                let g:ycm_always_populate_location_list = 1
-                let g:ycm_seed_identifiers_with_syntax = 0
+                let g:ycm_min_num_of_chars_for_completion = 2
+                let g:ycm_error_symbol = '!!'
+                let g:ycm_warning_symbol = '>>'
+                let g:ycm_collect_identifiers_from_tags_files = 1
 
-                " Enable omni completion
-                autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
+                autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
                 set completeopt+=preview
             endif
 
         " vim-airline {
             if isdirectory(expand("~/.vim/bundle/vim-airline/"))
-                let g:airline_enable_branch = 1
-                let g:airline_enable_syntastic = 1
-                let g:airline_enable_tagbar = 1
                 let g:airline_detect_modified = 1
                 let g:airline_detect_paste = 1
-                let g:airline_detect_whitespace = 2
+                let g:airline#extensions#branch#enabled = 1
                 let g:airline#extensions#tabline#enabled = 1
                 let g:airline#extensions#tabline#tab_nr_type = 1
                 let g:airline#extensions#bufferline#enabled = 0
-            endif
-        " }
-
-        " vim-autoclose {
-            if isdirectory(expand("~/.vim/bundle/vim-autoclse/"))
-                let g:autoclose_vim_commentmode = 1
+                let g:airline#extensions#syntastic#enabled = 1
+                let g:airline#extensions#whitespace#enabled = 1
+                let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing' ]
+                let g:airline#extensions#tmuxline#enabled = 1
+                let g:airline#extensions#capslock#enabled = 1
+                let g:airline#extensions#tagbar#enabled = 1
             endif
         " }
 
