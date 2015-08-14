@@ -19,7 +19,7 @@ app_name='far-vim'
 [ -z "$APP_PATH" ] && APP_PATH="$HOME/.far-vim"
 [ -z "$REPO_URI" ] && REPO_URI='https://github.com/farrrr/farrrr-vim.git'
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='3.0'
-debug_mode='0'
+debug_mode='1'
 fork_maintainer='0'
 [ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/vundle.git"
 

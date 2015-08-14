@@ -21,9 +21,29 @@
         set viewoptions-=folds,options
         set noswapfile
         set nomore
-        
+
     " Vim UI
         set nofoldenable                " Set to display all folds open
+        if (filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim")))
+            let g:solarized_termcolors=256
+            let g:solarized_termtrans=1
+            let g:solarized_contrast="normal"
+            let g:solarized_visibility="normal"
+            color solarized             " Load a colorscheme
+        endif
+
+        if has('statusline')
+        set laststatus=2
+
+        " Broken down into easily includeable segments
+        set statusline=%<%f\                     " Filename
+        set statusline+=%w%h%m%r                 " Options
+        set statusline+=%{fugitive#statusline()} " Git Hotness
+        set statusline+=\ [%{&ff}/%Y]            " Filetype
+        set statusline+=\ [%{getcwd()}]          " Current dir
+        set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+
+        endif
 
     " Formatting
         set wrap&
@@ -56,8 +76,6 @@
 
         " vim-airline {
             if isdirectory(expand("~/.vim/bundle/vim-airline/"))
-                let g:airline_detect_modified = 1
-                let g:airline_detect_paste = 1
                 let g:airline#extensions#branch#enabled = 1
                 let g:airline#extensions#tabline#enabled = 1
                 let g:airline#extensions#tabline#tab_nr_type = 1
@@ -101,7 +119,7 @@
 
         " javascript-libraries-syntax {
             if isdirectory(expand("~/.vim/bundle/javascript-libraries-syntax.vim/"))
-                let g:used_javascript_libs = 'underscore,backbone,jquery,requirejs'
+                let g:used_javascript_libs = 'underscore,backbone,jquery,requirejs,react'
             endif
         " }
 
