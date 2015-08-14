@@ -119,6 +119,7 @@
             else
                 Bundle 'bling/vim-airline'
             endif
+            Bundle 'powerline/fonts'
             Bundle 'bling/vim-bufferline'
             Bundle 'Lokaltog/vim-easymotion'
             Bundle 'jistr/vim-nerdtree-tabs'
@@ -232,7 +233,7 @@
             Bundle 'lukerandall/haskellmode-vim'
             Bundle 'eagletmt/neco-ghc'
             Bundle 'eagletmt/ghcmod-vim'
-            Bundle 'Shougo/vimproc'
+            Bundle 'Shougo/vimproc.vim'
             Bundle 'adinapoli/cumino'
             Bundle 'bitc/vim-hdevtools'
         endif

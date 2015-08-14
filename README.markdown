@@ -22,6 +22,8 @@ Great care has been taken to ensure that each plugin plays nicely with others, a
 Lastly (and perhaps, most importantly) It is completely cross platform. It works well on Windows, Linux and OSX without any modifications or additional configurations. If you are using [MacVim] or Gvim additional features are enabled. So regardless of your environment just clone and run.
 
 # Installation
+## Requirements
+To make all the plugins work, specifically [neocomplete](github.com/Shougo/neocomplete.vim), you need [vim with lua](https://github.com/Shougo/neocomplete.vim#requirements).
 
 ## Linux, \*nix, Mac OSX Installation
 
@@ -42,7 +44,7 @@ If you have a bash-compatible shell you can run the script directly:
 
 ## Installing on Windows
 
-On Windows and \*nix [Git] and [Curl] are required. Also, if you haven't done so already, you'll need to install [Vim].  
+On Windows and \*nix [Git] and [Curl] are required. Also, if you haven't done so already, you'll need to install [Vim].
 The quickest option to install all three dependencies ([Git], [Curl], [Vim] and [spf13-vim]) is via [Chocolatey] NuGet. After installing [Chocolatey], execute the following commands on the _command prompt_:
 
     C:\> choco install spf13-vim
@@ -188,9 +190,9 @@ and `.vimrc.bundles.fork` files in the root of their fork.  The load order for t
 
 See `.vimrc.bundles` for specifics on what options can be set to override bundle configuration. See `.vimrc.before` for specifics
 on what options can be overridden. Most vim configuration options should be set in your `.vimrc.fork` file, bundle configuration
-needs to be set in your `.vimrc.bundles.fork` file. 
+needs to be set in your `.vimrc.bundles.fork` file.
 
-You can specify the default bundles for your fork using `.vimrc.before.fork` file. Here is how to create an example `.vimrc.before.fork` file 
+You can specify the default bundles for your fork using `.vimrc.before.fork` file. Here is how to create an example `.vimrc.before.fork` file
 in a fork repo for the default bundles.
 ```bash
     echo let g:spf13_bundle_groups=[\'general\', \'programming\', \'misc\', \'youcompleteme\'] >> .vimrc.before.fork
@@ -201,6 +203,19 @@ You may also want to update your `README.markdown` file so that the `bootstrap.s
 file to pull down your fork.
 
 For an example of a fork of spf13-vim that provides customization in this manner see [taxilian's fork](https://github.com/taxilian/spf13-vim).
+
+### Easily Editing Your Configuration
+
+`<Leader>ev` opens a new tab containing the .vimrc configuration files listed above. This makes it easier to get an overview of your
+configuration and make customizations.
+
+`<Leader>sv` sources the .vimrc file, instantly applying your customizations to the currently running vim instance.
+
+These two mappings can themselves be customized by setting the following in .vimrc.before.local:
+```bash
+let g:spf13_edit_config_mapping='<Leader>ev'
+let g:spf13_apply_config_mapping='<Leader>sv'
+```
 
 # Plugins
 
@@ -255,7 +270,7 @@ Undotree makes that feature more accessible by creating a visual representation 
 
 NERDTree is a file explorer plugin that provides "project drawer"
 functionality to your vim editing.  You can learn more about it with
-:help NERDTree.
+`:help NERDTree`.
 
 **QuickStart** Launch using `<Leader>e`.
 
@@ -386,10 +401,10 @@ PIV provides:
 
 ![php vim itegration image][phpmanual-img]
 
-## Ack.vim
+## [Ack.vim]
 
 Ack.vim uses ack to search inside the current directory for a pattern.
-You can learn more about it with :help Ack
+You can learn more about it with `:help Ack`
 
 **QuickStart** :Ack
 
@@ -511,7 +526,7 @@ Here's some tips if you've never used VIM before:
 [Git]:http://git-scm.com
 [Curl]:http://curl.haxx.se
 [Vim]:http://www.vim.org/download.php#pc
-[msysgit]:http://code.google.com/p/msysgit
+[msysgit]:http://msysgit.github.io
 [Chocolatey]: http://chocolatey.org/
 [spf13-vim package]: https://chocolatey.org/packages/spf13-vim
 [MacVim]:http://code.google.com/p/macvim/
@@ -539,6 +554,7 @@ Here's some tips if you've never used VIM before:
 [Powerline]:https://github.com/lokaltog/powerline
 [Powerline Fonts]:https://github.com/Lokaltog/powerline-fonts
 [AutoClose]:https://github.com/spf13/vim-autoclose
+[Ack.vim]:https://github.com/mileszs/ack.vim
 
 [spf13-vim-img]:https://i.imgur.com/UKToY.png
 [spf13-vimrc-img]:https://i.imgur.com/kZWj1.png
