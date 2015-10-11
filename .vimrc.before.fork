@@ -3,8 +3,14 @@
     " Prevent automatically changing to open file directory
     let g:spf13_no_autochdir = 1
 
+    " Disable easier moving in tabs and windows
+    let g:spf13_no_easyWindows = 1
+
     " Disable wrap relative motion for start/end line motions
     let g:spf13_no_wrapRelMotion = 1
+
+    " Disable fast tab navigation
+    let g:spf13_no_fastTabs = 1
 
     " Clear search highlighting
     let g:spf13_clear_search_highlight = 1
@@ -12,19 +18,13 @@
     " Disable neosnippet expansion
     " This maps over <C-k> and does some Supertab
     " emulation with snippets
-    let g:spf13_no_neosnippet_expand = 1
+    let g:spf13_no_neosnippet_expand = 0
 
     " Enable powerline symbols
     let g:airline_powerline_fonts = 1
 
     " Don't turn conceallevel or concealcursor
     let g:spf13_no_conceal = 1
-
-    " Disable fast tab navigation
-    let g:spf13_no_fastTabs = 1
-
-    " Disable easier moving in tabs and windows
-    let g:spf13_no_easyWindows = 1
 
 
     " vim files directory
