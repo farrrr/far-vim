@@ -188,6 +188,8 @@
             Bundle 'othree/vim-syntax-enhanced'
             Bundle 'MarcWeber/vim-addon-local-vimrc'
             Bundle 'Chiel92/vim-autoformat'
+            Bundle 'chase/vim-ansible-yaml'
+            Bundle 'Glench/Vim-Jinja2-Syntax'
         endif
     " }
 
