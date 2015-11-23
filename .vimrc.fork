@@ -18,12 +18,9 @@
             endif
         endif
         set fileformats=unix,mac,dos
-        set viewoptions-=folds,options
         set noswapfile
-        set nomore
 
     " Vim UI
-        set nofoldenable                " Set to display all folds open
         if (filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim")))
             let g:solarized_termcolors=256
             let g:solarized_termtrans=1
@@ -43,6 +40,8 @@
             set statusline+=\ [%{getcwd()}]          " Current dir
             set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
         endif
+
+        set nofoldenable                " Set to display all folds open
 
     " Formatting
         set wrap&
@@ -111,20 +110,15 @@
                 let g:syntastic_loc_list_height=5
                 let g:syntastic_error_symbol = '✗'
                 let g:syntastic_warning_symbol = '⚠'
-                let g:syntastic_javascript_checkers = ['jshint']
+                let g:syntastic_javascript_checkers = ['jscs']
                 let g:syntastic_php_checkers = ['php']
+                let g:syntastic_ansible_checkers = ['ansible_lint']
             endif
         " }
 
         " javascript-libraries-syntax {
             if isdirectory(expand("~/.vim/bundle/javascript-libraries-syntax.vim/"))
-                let g:used_javascript_libs = 'underscore,backbone,jquery,requirejs,react'
-            endif
-        " }
-
-        " vim-javascript-syntax {
-            if isdirectory(expand("~/.vim/bundle/vim-javascript-syntax/"))
-            "    au FileType javascript call JavaScriptFold()
+                let g:used_javascript_libs = 'underscore,backbone,jquery,requirejs,react,handlebars'
             endif
         " }
 

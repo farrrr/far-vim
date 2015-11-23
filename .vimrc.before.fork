@@ -3,6 +3,9 @@
     " Prevent automatically changing to open file directory
     let g:spf13_no_autochdir = 1
 
+    " Disable views
+    let g:spf13_no_views = 1
+
     " Disable easier moving in tabs and windows
     let g:spf13_no_easyWindows = 1
 
@@ -15,16 +18,15 @@
     " Clear search highlighting
     let g:spf13_clear_search_highlight = 1
 
-    " Disable neosnippet expansion
-    " This maps over <C-k> and does some Supertab
-    " emulation with snippets
-    let g:spf13_no_neosnippet_expand = 0
-
     " Enable powerline symbols
     let g:airline_powerline_fonts = 1
 
     " Don't turn conceallevel or concealcursor
     let g:spf13_no_conceal = 1
+
+    " Change mappings for editing and applying the configuration
+    let g:spf13_edit_config_mapping = '<leader>ec'
+    let g:spf13_apply_config_mapping = '<leader>sc'
 
 
     " vim files directory
@@ -33,5 +35,5 @@
 
     " list only the plugin groups you will use
     let g:override_spf13_bundles = 1
-    let g:spf13_bundle_groups=['general', 'programming', 'neocomplete', 'php', 'ruby', 'python', 'javascript', 'html', 'misc']
+    let g:spf13_bundle_groups=['general', 'programming', 'neocomplete', 'php', 'ruby', 'python', 'javascript', 'html', 'misc', 'snipmate']
 " }
