@@ -36,4 +36,5 @@
     " list only the plugin groups you will use
     let g:override_spf13_bundles = 1
     let g:spf13_bundle_groups = ['general', 'programming', 'neocomplete', 'php', 'ruby', 'python', 'javascript', 'html', 'misc']
+
 " }
